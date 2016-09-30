@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>获取当前是第几周</title>
+</head>
+<body>
+
+    <script>
+        function getWeeks(){
+            var curYear = new Date().getFullYear();
+            var curMonth = (new Date().getMonth() + 1);
+            var curDay = new Date().getDate();
+            var monthArr = [31,31,30,31,30,31,31,30,31,30,31];
+
+            // 判断闰年平年
+            if(curYear%4 == 0 && curYear%100 == 0 || curYear%400 == 0){
+                monthArr.splice(1,0,29);
+            }else{
+                monthArr.splice(1,0,28);
+            }
+            
+            // 一年中的第几天
+            var totalDay = 0;
+            for(var i=0; i<curMonth-1; i++){
+                totalDay+=monthArr[i];
+            }
+            totalDay = totalDay + curDay;
+            console.log(totalDay);
+
+            var curWeek = Math.ceil(totalDay/7);
+            console.log(curWeek)
+
+        }
+        getWeeks();
+    </script>
+    <script src="jquery.js"></script>
+
+</body>
+</html>
